@@ -38,10 +38,4 @@ nyako_no_stp_wrds %>% inner_join(get_sentiments("bing")) %>%
   acast(word ~ sentiment, value.var = 'n', fill = 0) %>% 
   comparison.cloud(colors = c("red", "blue"), max.words = 1000)
 
-pattern <- read.csv('pattern.csv')
-pattern %>% arrange(-Views) %>% 
-  #filter(Views <= 150000) %>% 
-  ggplot() + 
-  geom_col(aes(reorder(Date, Views), Views), fill = 'magenta') + 
-  gghighlight(Date == '8/5/2021') +
-  coord_flip()
+as.data.frame(table(df$video)) |> arrange(-Freq)
